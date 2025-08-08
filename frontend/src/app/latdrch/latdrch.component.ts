@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrl: './latdrch.component.css'
 })
 export class LatdrchComponent {
-  public
+
   constructor(){
 
   }
