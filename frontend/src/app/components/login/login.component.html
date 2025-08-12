@@ -1,4 +1,31 @@
-<!--panel inicio de sesion-->
+
+<button (click)="encR = true">Inicia Sesión</button>
+<div class="emergente" *ngIf="encR">
+
+  <h2>Inicio de sesion</h2>
+  <form #inicioSesion="">
+    <input type="text" name="" id="" placeholder="Introduzca usuario"><br>
+    <input type="text" name="" id="" placeholder="Introduzca contraseña">
+    <button (click)=""></button>
+  </form>
+
+</div>
 
 
+
+<!--panel de registro-->
+<button (click)="encR = true">Registrarse</button>
+<div class="emergente" *ngIf="encR">
+  <h2>Registro de usuario</h2>
+  <form #registroForm="ngForm" (ngSubmit)="registrarUsuario(registroForm)">
+     <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="usuario.Usu.nombre" placeholder="Nombre">
+        <input type="password" name="contraseña" #contra="ngModel" [(ngModel)]="usuario.Usu.contra" placeholder="Contraseña">
+        <input type="email" name="email" [(ngModel)]="usuario.Usu.email" title="Introduce un correo electrónico válido" placeholder="Correo electrónico" required="true">
+        <input type="text" name="direccion" #direccion="ngModel" [(ngModel)]="usuario.Usu.direccion" placeholder="Direccion">
+        <input type="number" name="telefono" #telefono="ngModel" [(ngModel)]="usuario.Usu.telefono" title="Debes introducir 9 numeros" placeholder="Telefono">
+        <br>
+        <button type="submit" style="align-self: center;">Enviar</button>
+        <button type="button" (click)="ocultarRegistro()">Cerrar</button>
+    </form>
+</div>
 

@@ -26,3 +26,7 @@ usuarioController.crearUsuario = async(req, res) =>{
         res.status(500).json({status:"Error al registrar!"})
     }
 };
+
+
+
+module.exports = usuarioController;
