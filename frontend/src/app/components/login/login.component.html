@@ -1,21 +1,20 @@
-
-<button (click)="encR = true">Inicia Sesión</button>
-<div class="emergente" *ngIf="encR">
-
+<!--Panel de inicio de sesion-->
+<button (click)="encI = true">Inicia Sesión</button>
+<div class="" *ngIf="encI">
   <h2>Inicio de sesion</h2>
-  <form #inicioSesion="">
+  <form #inicioSesionForm="ngForm" (ngSubmit)="inicioSesionUsu(inicioSesionForm)">
     <input type="text" name="" id="" placeholder="Introduzca usuario"><br>
-    <input type="text" name="" id="" placeholder="Introduzca contraseña">
-    <button (click)=""></button>
+    <input type="text" name="" id="" placeholder="Introduzca contraseña"><br>
+    <button type="submit">Enviar</button> <!--para enviarlo todo con submit tienes que asegurarte de que cuando creas la etiqueta form el submit esta ahí-->
+    <button (click)="ocultarInicioSesion()">Cerrar</button>
   </form>
-
 </div>
 
 
 
-<!--panel de registro-->
+<!--Panel de registro-->
 <button (click)="encR = true">Registrarse</button>
-<div class="emergente" *ngIf="encR">
+<div class="" *ngIf="encR">
   <h2>Registro de usuario</h2>
   <form #registroForm="ngForm" (ngSubmit)="registrarUsuario(registroForm)">
      <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="usuario.Usu.nombre" placeholder="Nombre">
@@ -26,6 +25,5 @@
         <br>
         <button type="submit" style="align-self: center;">Enviar</button>
         <button type="button" (click)="ocultarRegistro()">Cerrar</button>
-    </form>
+  </form>
 </div>
-
