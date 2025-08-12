@@ -14,4 +14,4 @@ app.listen(app.get('port'), () => {
 })
 
 //solo hacer esta parte para registrar usuarios
-app.use('/usuarios',require('./routes/usuario.routes')); 
+app.use('/usuarios',require('./routes/usuario.routes')); //la primera palabra es como se te va a crear en la bbdd

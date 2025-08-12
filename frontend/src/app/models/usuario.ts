@@ -13,9 +13,9 @@ export class Usuario {
       this.nombre = '';
       this.contra ='';
       this.direccion='';
-      this.rol='Admin';
       this.telefono='';
       this.email='';
+      this.rol='Cliente';
   }
 
 }

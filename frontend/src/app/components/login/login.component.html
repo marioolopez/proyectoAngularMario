@@ -1,29 +1,79 @@
-<!--Panel de inicio de sesion-->
-<button (click)="encI = true">Inicia Sesión</button>
-<div class="" *ngIf="encI">
-  <h2>Inicio de sesion</h2>
-  <form #inicioSesionForm="ngForm" (ngSubmit)="inicioSesionUsu(inicioSesionForm)">
-    <input type="text" name="" id="" placeholder="Introduzca usuario"><br>
-    <input type="text" name="" id="" placeholder="Introduzca contraseña"><br>
-    <button type="submit">Enviar</button> <!--para enviarlo todo con submit tienes que asegurarte de que cuando creas la etiqueta form el submit esta ahí-->
-    <button (click)="ocultarInicioSesion()">Cerrar</button>
-  </form>
+<!--botones de inicio-->
+<div class="container text-center mt-5">
+  <button class="btn btn-primary me-2" (click)="encI = true">Iniciar Sesión</button>
+  <button class="btn btn-success" (click)="encR = true">Registrarse</button>
 </div>
 
 
 
-<!--Panel de registro-->
-<button (click)="encR = true">Registrarse</button>
-<div class="" *ngIf="encR">
-  <h2>Registro de usuario</h2>
-  <form #registroForm="ngForm" (ngSubmit)="registrarUsuario(registroForm)">
-     <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="usuario.Usu.nombre" placeholder="Nombre">
-        <input type="password" name="contraseña" #contra="ngModel" [(ngModel)]="usuario.Usu.contra" placeholder="Contraseña">
-        <input type="email" name="email" [(ngModel)]="usuario.Usu.email" title="Introduce un correo electrónico válido" placeholder="Correo electrónico" required="true">
-        <input type="text" name="direccion" #direccion="ngModel" [(ngModel)]="usuario.Usu.direccion" placeholder="Direccion">
-        <input type="number" name="telefono" #telefono="ngModel" [(ngModel)]="usuario.Usu.telefono" title="Debes introducir 9 numeros" placeholder="Telefono">
-        <br>
-        <button type="submit" style="align-self: center;">Enviar</button>
-        <button type="button" (click)="ocultarRegistro()">Cerrar</button>
-  </form>
+
+
+<!--inicio de sesión-->
+<div class="modal show d-block" *ngIf="encI" style="background-color: rgba(0,0,0,0.5);">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form #inicioSesionForm="ngForm" (ngSubmit)="inicioSesionUsu(inicioSesionForm)">
+        <div class="modal-header">
+          <h5 class="modal-title">Inicio de Sesión</h5>
+          <button type="button" class="btn-close" (click)="ocultarInicioSesion()"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <input type="text" class="form-control" placeholder="Introduzca Email" required name="email" [(ngModel)]="usuario.Usu.email">
+          </div>
+          <div class="mb-3">
+            <input type="password" class="form-control" placeholder="Introduzca Contraseña" required name="contra"  [(ngModel)]="usuario.Usu.contra">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Entrar</button>
+          <button type="button" class="btn btn-secondary" (click)="ocultarInicioSesion()">Cerrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<!--registro-->
+<div class="modal show d-block" *ngIf="encR" style="background-color: rgba(0,0,0,0.5);">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form #registroForm="ngForm" (ngSubmit)="registrarUsuario(registroForm)"> <!-- el name detro de cada input es importante en el ngForm de la etiqueta form #loquesea-->
+        <div class="modal-header">
+          <h5 class="modal-title">Registro de Usuario</h5>
+          <button type="button" class="btn-close" (click)="ocultarRegistro()"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <input type="text" class="form-control" placeholder="Nombre" name="nombre" required [(ngModel)]="usuario.Usu.nombre">
+          </div>
+          <div class="mb-3">
+            <input type="password" class="form-control" placeholder="Contraseña" name="contra" required [(ngModel)]="usuario.Usu.contra">
+          </div>
+          <div class="mb-3">
+            <input type="email" class="form-control" placeholder="Correo Electrónico" name="email" required [(ngModel)]="usuario.Usu.email">
+          </div>
+          <div class="mb-3">
+            <input type="text" class="form-control" placeholder="Dirección" name="direccion" required [(ngModel)]="usuario.Usu.direccion">
+          </div>
+          <div class="mb-3">
+            <input type="number" class="form-control" placeholder="Teléfono" name="telefono" required [(ngModel)]="usuario.Usu.telefono">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success">Registrar</button>
+          <button type="button" class="btn btn-secondary" (click)="ocultarRegistro()">Cerrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>

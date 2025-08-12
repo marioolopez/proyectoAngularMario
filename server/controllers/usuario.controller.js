@@ -1,5 +1,20 @@
 const usuario = require('../models/usuario');
-const usuarioController = {};  //es una forma de inicializar un objeto
+const usuarioController = {}; //es una forma de inicializar un objeto
+
+
+//metodo para comprar usuarios a la hora de crear
+usuarioController.comprobarUsuario = async(req, res) =>{
+    const { email } = req.body; //encuentras el mail
+    const usuarioExistente = await usuario.findOne({ email });
+
+    if(usuarioExistente){
+        return res.json({status:"el usuario ya esta registrado"});
+    }
+    else{
+        return res.json({status:"el usuario no existe"});
+    }
+};  
+
 
 //crear usuario
 usuarioController.crearUsuario = async(req, res) =>{
@@ -25,6 +40,14 @@ usuarioController.crearUsuario = async(req, res) =>{
     }catch(error){
         res.status(500).json({status:"Error al registrar!"})
     }
+};
+
+
+
+
+//comprobar inicio de sesion
+usuarioController.inicioSesionComprobar = async(req, res) =>{
+    const {}
 };
 
 

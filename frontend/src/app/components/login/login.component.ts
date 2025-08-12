@@ -25,17 +25,39 @@ export class LoginComponent {
   ocultarRegistro(){ //una vez iniciemos sesion
      this.encR = !this.encR;
   }
+
+  //tenemos que decir que si una persona tiene un correo igual a otra que ya esta registrada, esta, ya no puede registrarse
   registrarUsuario(recogerDatosRegistro: NgForm): void {
     this.encI = false; //si le damos a registro y el inicio esta desplegado, lo cerramos.
+
     if(!recogerDatosRegistro.valid){
         alert("Faltan datos por rellenar!");
-        return
+        return;
     }
-    else{ this.usuario.crearUsuario(this.usuario.Usu).subscribe((usu) =>{
-        alert("usuario creado");
-      });
-    }
+
+    this.usuario.comprobarMail(this.usuario.Usu.email).subscribe((res: any) =>{
+      if(res.status == "el usuario ya esta registrado"){ //nose si va a funcionar
+        alert("este correo ya esta registrado!");
+        return;
+      }
+      else{
+        this.usuario.crearUsuario(this.usuario.Usu).subscribe((usu) =>{
+          alert("usuario creado!");
+          //borramos campos
+          this.usuario.Usu.nombre = "";
+          this.usuario.Usu.email = "";
+          this.usuario.Usu.contra = "";
+          this.usuario.Usu.direccion = "";
+          this.usuario.Usu.telefono = "";
+       });
+      }
+    });
+
   }
+
+
+
+
 
 
   //inicio de sesion
@@ -50,6 +72,9 @@ export class LoginComponent {
     }
     else{
       alert("Los campos estan llenos!");
+
+
+
     }
 
   }
