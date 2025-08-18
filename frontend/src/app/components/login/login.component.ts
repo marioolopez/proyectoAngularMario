@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { UsuarioService } from '../../services/usuario.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms'; // <-- IMPORTANTE
-import { empty } from 'rxjs';
+import { Usuario } from '../../models/usuario';
 @Component({
   selector: 'app-login',
   imports: [CommonModule, FormsModule],
@@ -60,22 +60,43 @@ export class LoginComponent {
 
 
 
-  //inicio de sesion
+  //Inicio de Sesion
   ocultarInicioSesion(){
     this.encI = !this.encI;
   }
   inicioSesionUsu(recogerDatosInicio:NgForm){
-    this.encR = false;
-    if(!recogerDatosInicio.valid) {
+    if(!recogerDatosInicio.valid){
       alert("Faltan datos por rellenar!");
       return;
     }
     else{
-      alert("Los campos estan llenos!");
+      const {email, contra} = recogerDatosInicio.value; //coges la info del email y la contraseña
+      this.usuario.comprobarMail(email).subscribe(
+        (res: Usuario) => {
+          if(res && res.contra === contra){
+            alert("Entrando con el usuario "+res.email);
 
+            if(res.rol.trim() === "Admin".trim()){
+              alert("La persona logada es ADMINISTRADOR!");
+              return;
+            }
+            else{
+              alert("La persona ES UN CLIENTE!");
+              return;
+            }
 
-
+          }
+          else{
+            alert("Los datos de inicio de sesion son invalidos!");
+            return;
+          }
+        },
+        (err) => {
+            if(err.status === 404) {
+              alert("Usuario no encontrado");
+            }
+        }
+      );
     }
-
   }
 }

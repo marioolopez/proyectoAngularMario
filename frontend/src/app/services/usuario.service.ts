@@ -9,7 +9,7 @@ export class UsuarioService {
   Usuarios:Array<Usuario>=[];
   emailUsuarioLogado: string;
 
-  readonly url = "http://localhost:3000/usuarios";
+  readonly url = "http://localhost:3000/usuarios/";
   constructor(private http:HttpClient) {
     this.Usu = new Usuario();
     this.Usuarios = [];
@@ -17,11 +17,11 @@ export class UsuarioService {
   }
 
   crearUsuario(Usu:Usuario){
-    return this.http.post(this.url+"/registro", Usu);
+    return this.http.post(this.url+"registro", Usu);
   }
 
   comprobarMail(email: string){
-    return this.http.post(this.url+"/comprobar", {email});
+    return this.http.get<Usuario>(this.url+email);
   }
 
 }

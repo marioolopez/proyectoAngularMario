@@ -2,16 +2,13 @@ const usuario = require('../models/usuario');
 const usuarioController = {}; //es una forma de inicializar un objeto
 
 
-//metodo para comprar usuarios a la hora de crear
+//metodo para comprar usuarios de la bbdd a la hora de IniciarSesion
 usuarioController.comprobarUsuario = async(req, res) =>{
-    const { email } = req.body; //encuentras el mail
-    const usuarioExistente = await usuario.findOne({ email });
-
-    if(usuarioExistente){
-        return res.json({status:"el usuario ya esta registrado"});
-    }
-    else{
-        return res.json({status:"el usuario no existe"});
+    const emailExistente = await usuario.findOne({ email: req.params.email }); //devuelve por parametros el email de la persona
+    if(emailExistente){
+        return res.json(emailExistente);
+    }else{
+        return res.status(400).json({message: 'Usuario no encontrado!'});
     }
 };  
 
@@ -41,15 +38,6 @@ usuarioController.crearUsuario = async(req, res) =>{
         res.status(500).json({status:"Error al registrar!"})
     }
 };
-
-
-
-
-//comprobar inicio de sesion
-usuarioController.inicioSesionComprobar = async(req, res) =>{
-    const {}
-};
-
 
 
 module.exports = usuarioController;

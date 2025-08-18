@@ -4,7 +4,7 @@ const usuario = require('../controllers/usuario.controller');
 
 //ruta de los usuarios
 router.post("/registro", usuario.crearUsuario); //ruta que crea usuarios
-router.post("/comprobar", usuario.comprobarUsuario); //comprueba el mail a la hora de crear uno nuevo
+router.get("/:email", usuario.comprobarUsuario); //buscar un usuario por mail
 
 module.exports = router;
 
