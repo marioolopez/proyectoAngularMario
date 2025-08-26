@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   templateUrl: './medio.component.html',
   styleUrl: './medio.component.css'
 })
-export class MedioComponent {
+export class MedioComponent { //donde vamos a
 
 }

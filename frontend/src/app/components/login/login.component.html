@@ -1,14 +1,15 @@
-<!--botones de inicio-->
-<div class="container text-center mt-5">
+<!--Nombre del usuario segun te logueas-->
+<div *ngIf="usuarioLogado" class="text-center mt-3">
+  <h5>Usuario: {{ nombreUsuario }}</h5>
+</div>
+
+<!--Botones de inicio-->
+<div class="container text-center mt-5" *ngIf="!usuarioLogado">
   <button class="btn btn-primary me-2" (click)="encI = true">Iniciar Sesión</button>
   <button class="btn btn-success" (click)="encR = true">Registrarse</button>
 </div>
 
-
-
-
-
-<!--inicio de sesión-->
+<!--Inicio de sesión-->
 <div class="modal show d-block" *ngIf="encI" style="background-color: rgba(0,0,0,0.5);">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -18,12 +19,8 @@
           <button type="button" class="btn-close" (click)="ocultarInicioSesion()"></button>
         </div>
         <div class="modal-body">
-          <div class="mb-3">
-            <input type="text" class="form-control" placeholder="Introduzca Email" required name="email" [(ngModel)]="usuario.Usu.email">
-          </div>
-          <div class="mb-3">
-            <input type="password" class="form-control" placeholder="Introduzca Contraseña" required name="contra"  [(ngModel)]="usuario.Usu.contra">
-          </div>
+          <input type="text" class="form-control mb-3" placeholder="Email" name="email" required [(ngModel)]="usuario.Usu.email">
+          <input type="password" class="form-control" placeholder="Contraseña" name="contra" required [(ngModel)]="usuario.Usu.contra">
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary">Entrar</button>
@@ -38,36 +35,35 @@
 
 
 
+<!-- Botón Admin -->
+<div class="text-center mt-3" *ngIf="botonAdmin">
+  <button class="btn btn-warning">Panel Admin</button>
+</div>
+
+<!-- Botón cerrar sesión -->
+<div class="text-center mt-3" *ngIf="usuarioLogado">
+  <button class="btn btn-secondary" (click)="cerrarSesionUsuarioLogado()">Cerrar Sesión</button>
+</div>
 
 
 
 
 
-<!--registro-->
+<!--Registro-->
 <div class="modal show d-block" *ngIf="encR" style="background-color: rgba(0,0,0,0.5);">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form #registroForm="ngForm" (ngSubmit)="registrarUsuario(registroForm)"> <!-- el name detro de cada input es importante en el ngForm de la etiqueta form #loquesea-->
+      <form #registroForm="ngForm" (ngSubmit)="registrarUsuario(registroForm)">
         <div class="modal-header">
           <h5 class="modal-title">Registro de Usuario</h5>
           <button type="button" class="btn-close" (click)="ocultarRegistro()"></button>
         </div>
         <div class="modal-body">
-          <div class="mb-3">
-            <input type="text" class="form-control" placeholder="Nombre" name="nombre" required [(ngModel)]="usuario.Usu.nombre">
-          </div>
-          <div class="mb-3">
-            <input type="password" class="form-control" placeholder="Contraseña" name="contra" required [(ngModel)]="usuario.Usu.contra">
-          </div>
-          <div class="mb-3">
-            <input type="email" class="form-control" placeholder="Correo Electrónico" name="email" required [(ngModel)]="usuario.Usu.email">
-          </div>
-          <div class="mb-3">
-            <input type="text" class="form-control" placeholder="Dirección" name="direccion" required [(ngModel)]="usuario.Usu.direccion">
-          </div>
-          <div class="mb-3">
-            <input type="number" class="form-control" placeholder="Teléfono" name="telefono" required [(ngModel)]="usuario.Usu.telefono">
-          </div>
+          <input type="text" class="form-control mb-3" placeholder="Nombre" name="nombre" required [(ngModel)]="usuario.Usu.nombre">
+          <input type="password" class="form-control mb-3" placeholder="Contraseña" name="contra" required [(ngModel)]="usuario.Usu.contra">
+          <input type="email" class="form-control mb-3" placeholder="Correo Electrónico" name="email" required [(ngModel)]="usuario.Usu.email">
+          <input type="text" class="form-control mb-3" placeholder="Dirección" name="direccion" required [(ngModel)]="usuario.Usu.direccion">
+          <input type="number" class="form-control mb-3" placeholder="Teléfono" name="telefono" required [(ngModel)]="usuario.Usu.telefono">
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-success">Registrar</button>

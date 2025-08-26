@@ -17,7 +17,7 @@ export class UsuarioService {
   }
 
   crearUsuario(Usu:Usuario){
-    return this.http.post(this.url+"registro", Usu);
+    return this.http.post(this.url+"registronuevo", Usu);
   }
 
   comprobarMail(email: string){

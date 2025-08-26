@@ -1,0 +1,15 @@
+footer {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  .social-icon {
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  .social-icon:hover {
+    color: #ffc107; /* color amarillo suave, bootstrap warning */
+    transform: scale(1.2);
+    text-shadow: 0 0 5px #ffc107;
+  }
+  /* Línea superior para separar footer */
+  footer.border-top {
+    border-top-width: 2px !important;
+  }

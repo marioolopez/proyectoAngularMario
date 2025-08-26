@@ -1,21 +1,18 @@
-<!--Estructura de el main   LATIZQ -> FILTROS , LATDRCH -> LOGIN Y MISCOMPRASM, Y MEDIO PRODUCTOS Y EL PANELADMINISTRADOR DEL SUPERUSUARIO-->
-<div class="container my-4"> <!--centra el contenido horizontalmente-->
- <div class="row"> <!--lo divides columnas-->
-
-  <div class="col-12 col-md-3 mb-4 mb-md-0">
+<div class="row">
+  <!--filtros-->
+  <div class="col-12 col-md-2 mb-3">
     <app-latizq></app-latizq>
   </div>
 
-
-  <div class="col-12 col-md-6 mb-4 mb-md-0">
-    <app-medio></app-medio>
+  <!--productos o panel admin-->
+  <div class="col-12 col-md-7 mb-3">
+    <div class="row">
+      <app-medio></app-medio>
+    </div>
   </div>
 
-
+  <!--login y mis compras -->
   <div class="col-12 col-md-3">
     <app-latdrch></app-latdrch>
   </div>
-
- </div>
 </div>
-
