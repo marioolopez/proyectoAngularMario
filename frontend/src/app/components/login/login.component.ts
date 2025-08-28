@@ -3,10 +3,11 @@ import { UsuarioService } from '../../services/usuario.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Usuario } from '../../models/usuario';
+import { PanelAdminComponent } from "../panel-admin/panel-admin.component";
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, PanelAdminComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -19,15 +20,19 @@ export class LoginComponent {
   public nombreUsuario: string = "";
   public botonAdmin: boolean = false;
   public usuarioLogado: boolean = false;
+  public mostrarPanelAdmin: boolean = false;
 
-  constructor(public usuario: UsuarioService) {}
+  constructor(public usuario: UsuarioService){}
 
+  //ocultar panel de inicio y registro
   ocultarRegistro() {
     this.encR = !this.encR;
   }
   ocultarInicioSesion() {
     this.encI = !this.encI;
   }
+
+
 
   registrarUsuario(recogerDatosRegistro: NgForm): void {
     this.encI = false;
@@ -62,6 +67,9 @@ export class LoginComponent {
     );
   }
 
+
+
+
   inicioSesionUsu(recogerDatosInicio: NgForm) {
     if(!recogerDatosInicio.valid) {
       alert("Faltan datos por rellenar!");
@@ -95,11 +103,13 @@ export class LoginComponent {
     );
   }
 
+
   cerrarSesionUsuarioLogado() {
     this.nombreUsuario = ""; //el nombre a vacío
     this.botonAdmin = false; //hacemos desaparecer el boton admin
     this.usuarioLogado = false; //de deslogea el usuario
     this.usuario.Usu = new Usuario(); //limpiar el objeto en el servicio
+    this.mostrarPanelAdmin = false;
   }
 
 }

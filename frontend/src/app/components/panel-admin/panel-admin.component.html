@@ -1,0 +1,58 @@
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Panel de Administración</h2>
+
+  <!--PARA SELECCIONAR SI DEESEAS EDITAR, CREAR y ELIMINAR PRODUCTOS O CLIENTES-->
+  <ul class="nav nav-tabs mb-3">
+    <li class="nav-item">
+      <a class="nav-link" [class.active]="seccion === 'productos'" (click)="seccion='productos'">Productos</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [class.active]="seccion === 'clientes'" (click)="seccion='clientes'">Clientes</a>
+    </li>
+  </ul>
+
+  <!--si elijes productos...-->
+  <div *ngIf="seccion==='productos'">
+    <h4>Gestión de Productos</h4>
+    <form (ngSubmit)="crearProducto()" #productoForm="ngForm" class="row g-3">
+
+      <div class="col-md-6">
+        <input type="text" class="form-control" placeholder="Nombre del producto"
+               name="nombreProducto" required [(ngModel)]="producto.nombreProducto">
+      </div>
+
+      <div class="col-md-3">
+        <input type="number" class="form-control" placeholder="Stock"
+               name="stockDisponible" required [(ngModel)]="producto.stockDisponible">
+      </div>
+
+      <div class="col-md-3">
+        <input type="number" class="form-control" placeholder="Precio"
+               name="precio" required [(ngModel)]="producto.precio">
+      </div>
+
+      <div class="col-md-6">
+        <input type="text" class="form-control" placeholder="Tipo de producto"
+               name="tipoProducto" [(ngModel)]="producto.tipoProducto">
+      </div>
+
+      <div class="col-md-6">
+        <input type="text" class="form-control" placeholder="URL de imagen"
+               name="imagen" [(ngModel)]="producto.imagen">
+      </div>
+
+      <div class="col-12">
+        <button type="submit" class="btn btn-success">Crear Producto</button>
+      </div>
+    </form>
+  </div>
+
+
+  <!--si elijes clientes....-->
+  <div *ngIf="seccion==='clientes'">
+    <h4>Gestión de Clientes</h4>
+    <p>(Aquí luego meterás CRUD de clientes)</p>
+  </div>
+
+
+</div>

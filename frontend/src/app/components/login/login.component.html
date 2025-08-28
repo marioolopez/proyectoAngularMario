@@ -9,6 +9,7 @@
   <button class="btn btn-success" (click)="encR = true">Registrarse</button>
 </div>
 
+
 <!--Inicio de sesión-->
 <div class="modal show d-block" *ngIf="encI" style="background-color: rgba(0,0,0,0.5);">
   <div class="modal-dialog">
@@ -35,18 +36,28 @@
 
 
 
-<!-- Botón Admin -->
+
+
+<!--Botón Admin-->
 <div class="text-center mt-3" *ngIf="botonAdmin">
-  <button class="btn btn-warning">Panel Admin</button>
+  <button class="btn btn-warning" (click)="mostrarPanelAdmin = true">Panel Admin</button>
 </div>
 
-<!-- Botón cerrar sesión -->
+<!--Cuando pulses el boton 'Admin' que aparezca el panel para administrar-->
+<div *ngIf="mostrarPanelAdmin">
+  <app-panel-admin></app-panel-admin>
+</div>
+
+
+
+
+
+
+
+<!--Botón cerrar sesión-->
 <div class="text-center mt-3" *ngIf="usuarioLogado">
   <button class="btn btn-secondary" (click)="cerrarSesionUsuarioLogado()">Cerrar Sesión</button>
 </div>
-
-
-
 
 
 <!--Registro-->

@@ -7,11 +7,5 @@ import { LoginComponent } from "../login/login.component";
   styleUrl: './latdrch.component.css'
 })
 export class LatdrchComponent {
-
-  constructor(){
-
-  }
-
-
-
+  constructor(){}
 }
