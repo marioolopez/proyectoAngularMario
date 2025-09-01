@@ -1,7 +1,7 @@
 <div class="container mt-4">
   <h2 class="text-center mb-4">Panel de Administración</h2>
 
-  <!--PARA SELECCIONAR SI DEESEAS EDITAR, CREAR y ELIMINAR PRODUCTOS O CLIENTES-->
+  <!-- Pestañas Productos / Clientes -->
   <ul class="nav nav-tabs mb-3">
     <li class="nav-item">
       <a class="nav-link" [class.active]="seccion === 'productos'" (click)="seccion='productos'">Productos</a>
@@ -11,48 +11,73 @@
     </li>
   </ul>
 
-  <!--si elijes productos...-->
+  <!-- GESTIÓN DE PRODUCTOS -->
   <div *ngIf="seccion==='productos'">
     <h4>Gestión de Productos</h4>
-    <form (ngSubmit)="crearProducto()" #productoForm="ngForm" class="row g-3">
 
+    <!-- FORMULARIO CREAR/EDITAR -->
+    <form (ngSubmit)="crearProducto()" #productoForm="ngForm" class="row g-3 mb-4">
       <div class="col-md-6">
         <input type="text" class="form-control" placeholder="Nombre del producto"
                name="nombreProducto" required [(ngModel)]="producto.nombreProducto">
       </div>
-
       <div class="col-md-3">
         <input type="number" class="form-control" placeholder="Stock"
                name="stockDisponible" required [(ngModel)]="producto.stockDisponible">
       </div>
-
       <div class="col-md-3">
         <input type="number" class="form-control" placeholder="Precio"
                name="precio" required [(ngModel)]="producto.precio">
       </div>
-
       <div class="col-md-6">
         <input type="text" class="form-control" placeholder="Tipo de producto"
                name="tipoProducto" [(ngModel)]="producto.tipoProducto">
       </div>
-
       <div class="col-md-6">
         <input type="text" class="form-control" placeholder="URL de imagen"
                name="imagen" [(ngModel)]="producto.imagen">
       </div>
-
       <div class="col-12">
-        <button type="submit" class="btn btn-success">Crear Producto</button>
+        <button type="submit" class="btn btn-success">
+          {{ producto._id ? 'Actualizar Producto' : 'Crear Producto' }}
+        </button>
+        <button type="button" class="btn btn-secondary ms-2" (click)="limpiarPanel()">Limpiar</button>
       </div>
     </form>
+
+    <!--lista de productos-->
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover align-middle">
+        <thead class="table-light">
+          <tr>
+            <th>Imagen</th>
+            <th>Nombre</th>
+            <th>Stock</th>
+            <th>Precio</th>
+            <th>Tipo</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let prod of productos">
+            <td><img [src]="prod.imagen" alt="{{prod.nombreProducto}}" width="60"></td>
+            <td>{{ prod.nombreProducto }}</td>
+            <td>{{ prod.stockDisponible }}</td>
+            <td>{{ prod.precio | currency:'EUR' }}</td>
+            <td>{{ prod.tipoProducto }}</td>
+            <td>
+              <button class="btn btn-primary btn-sm me-2" (click)="editarProducto(prod)">Editar</button>
+              <button class="btn btn-danger btn-sm" (click)="eliminarProducto(prod._id)">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
-
-  <!--si elijes clientes....-->
+  <!-- GESTIÓN DE CLIENTES -->
   <div *ngIf="seccion==='clientes'">
     <h4>Gestión de Clientes</h4>
     <p>(Aquí luego meterás CRUD de clientes)</p>
   </div>
-
-
 </div>

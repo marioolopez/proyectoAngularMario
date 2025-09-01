@@ -40,7 +40,7 @@
 
 <!--Botón Admin-->
 <div class="text-center mt-3" *ngIf="botonAdmin">
-  <button class="btn btn-warning" (click)="mostrarPanelAdmin = true">Panel Admin</button>
+  <button class="btn btn-warning" (click)="mostrarPanelAdmin = !mostrarPanelAdmin">Panel Admin</button>
 </div>
 
 <!--Cuando pulses el boton 'Admin' que aparezca el panel para administrar-->

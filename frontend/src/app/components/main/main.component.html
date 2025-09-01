@@ -7,7 +7,9 @@
   <!--productos o panel admin-->
   <div class="col-12 col-md-7 mb-3">
     <div class="row">
-      <app-medio></app-medio>
+      <div *ngFor="let prod of productosTodos" class="col-12 col-md-6 col-lg-4 mb-4">
+        <app-productos [productoEnviado]="prod"></app-productos>
+      </div>
     </div>
   </div>
 

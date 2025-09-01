@@ -3,7 +3,6 @@ export class Producto {
   nombreProducto: string;
   stockDisponible: number;
   precio: number;
-  cantidadCogida: number;
   tipoProducto: string;
   imagen: string
   constructor(){
@@ -11,7 +10,6 @@ export class Producto {
     this.nombreProducto = '';
     this.stockDisponible = 0;
     this.precio = 0;
-    this.cantidadCogida = 0;
     this.tipoProducto = '';
     this.imagen = '';
   }
