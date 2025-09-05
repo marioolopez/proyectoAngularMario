@@ -13,6 +13,7 @@ export class ProductoService{
     this.Prod = new Producto();
   }
 
+  //PANEL ADMIN DE PRODUCTOS CRUD
   crearProducto(Prod: Producto){ //crear producto
     return this.http.post(this.url+'crearproducto', Prod);
   }
